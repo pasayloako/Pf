@@ -12,7 +12,7 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: false,
-    minify: 'esbuild', // Changed from 'terser' to 'esbuild' (built-in, no extra dependency)
+    minify: 'esbuild', // esbuild is built into Vite, no installation needed
     rollupOptions: {
       input: {
         main: 'index.html'
