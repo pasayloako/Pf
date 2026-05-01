@@ -1,7 +1,7 @@
-import express, { Request, Response } from 'express';
-import cors from 'cors';
-import axios from 'axios';
-import nodemailer from 'nodemailer';
+const express = require('express');
+const cors = require('cors');
+const axios = require('axios');
+const nodemailer = require('nodemailer');
 
 const app = express();
 
@@ -10,12 +10,12 @@ app.use(cors());
 app.use(express.json());
 
 // Health check endpoint
-app.get('/api/health', (req: Request, res: Response) => {
+app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', timestamp: new Date().toISOString() });
 });
 
 // Chatbot API endpoint
-app.post('/api/chat', async (req: Request, res: Response) => {
+app.post('/api/chat', async (req, res) => {
   const { query } = req.body;
   
   if (!query) {
@@ -31,7 +31,6 @@ app.post('/api/chat', async (req: Request, res: Response) => {
       }
     });
     
-    // Handle different response structures
     let reply = "I'm here to help you with your questions!";
     if (response.data) {
       reply = response.data.reply || response.data.response || response.data.message || response.data.result || "I'm here to help you!";
@@ -40,35 +39,24 @@ app.post('/api/chat', async (req: Request, res: Response) => {
     res.json({ reply });
   } catch (error) {
     console.error('Chatbot API error:', error);
-    
-    let errorMessage = "Sorry, I encountered an error. Please try again later.";
-    if (axios.isAxiosError(error) && error.code === 'ECONNABORTED') {
-      errorMessage = "The request timed out. Please try again.";
-    } else if (axios.isAxiosError(error) && error.response?.status === 404) {
-      errorMessage = "The AI service is temporarily unavailable. Please try again later.";
-    }
-    
-    res.status(500).json({ reply: errorMessage });
+    res.status(500).json({ reply: "Sorry, I encountered an error. Please try again later." });
   }
 });
 
 // Contact form endpoint
-app.post('/api/contact', async (req: Request, res: Response) => {
+app.post('/api/contact', async (req, res) => {
   const { name, email, message } = req.body;
   
   if (!name || !email || !message) {
     return res.status(400).json({ error: 'All fields are required' });
   }
   
-  // Email validation
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email)) {
     return res.status(400).json({ error: 'Invalid email format' });
   }
   
   try {
-    // For Vercel production, use environment variables
-    // For development/demo, log and simulate success
     if (process.env.NODE_ENV === 'production' && process.env.EMAIL_USER && process.env.EMAIL_PASS) {
       const transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -94,11 +82,10 @@ app.post('/api/contact', async (req: Request, res: Response) => {
       
       res.json({ message: 'Message sent successfully! I will get back to you soon.' });
     } else {
-      // Development mode - just log
       console.log('📧 Contact Form Submission (Demo Mode):');
       console.log(`From: ${name} (${email})`);
       console.log(`Message: ${message}`);
-      res.json({ message: 'Message received (Demo Mode). In production, emails will be sent.' });
+      res.json({ message: 'Message received! I will get back to you soon.' });
     }
   } catch (error) {
     console.error('Email sending error:', error);
@@ -106,5 +93,13 @@ app.post('/api/contact', async (req: Request, res: Response) => {
   }
 });
 
-// Export the Express app for Vercel
-export default app;
+// Export for Vercel (if using serverless)
+module.exports = app;
+
+// For local development
+if (process.env.NODE_ENV !== 'production') {
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running on http://localhost:${PORT}`);
+  });
+}
