@@ -12,12 +12,7 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: false,
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true,
-      },
-    },
+    minify: 'esbuild', // Changed from 'terser' to 'esbuild' (built-in, no extra dependency)
     rollupOptions: {
       input: {
         main: 'index.html'
