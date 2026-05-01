@@ -13,5 +13,18 @@ export default defineConfig({
     outDir: 'dist',
     sourcemap: false,
     minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+      },
+    },
+    rollupOptions: {
+      input: {
+        main: 'index.html'
+      }
+    }
+  },
+  optimizeDeps: {
+    include: ['three', 'gsap', 'typed.js']
   }
 });
