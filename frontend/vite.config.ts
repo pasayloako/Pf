@@ -12,14 +12,6 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: false,
-    minify: 'esbuild', // esbuild is built into Vite, no installation needed
-    rollupOptions: {
-      input: {
-        main: 'index.html'
-      }
-    }
-  },
-  optimizeDeps: {
-    include: ['three', 'gsap', 'typed.js']
+    minify: 'esbuild'  // Just change this ONE line from 'terser' to 'esbuild'
   }
 });
