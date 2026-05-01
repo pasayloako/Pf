@@ -10,14 +10,14 @@
       }
     },
     {
-      "src": "backend/server.ts",
+      "src": "backend/api/**",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "backend/server.ts"
+      "dest": "backend/api/$1"
     },
     {
       "src": "/(.*)",
@@ -25,10 +25,26 @@
     }
   ],
   "env": {
-    "EMAIL_USER": "@email_user",
-    "EMAIL_PASS": "@email_pass"
+    "NODE_ENV": "production"
   },
   "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET,POST,OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type"
+        }
+      ]
+    },
     {
       "source": "/(.*)",
       "headers": [
@@ -43,14 +59,12 @@
         {
           "key": "X-XSS-Protection",
           "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
         }
       ]
     }
-  ],
-  "functions": {
-    "backend/server.ts": {
-      "memory": 1024,
-      "maxDuration": 10
-    }
-  }
+  ]
 }
