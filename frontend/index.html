@@ -1,0 +1,125 @@
+<!-- frontend/index.html -->
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Selov Asx | Front End Developer & Tool Creator</title>
+    <link rel="stylesheet" href="/src/style.css">
+    <style>
+        /* Additional inline critical styles for loader */
+        .loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0a0a0a; display: flex; justify-content: center; align-items: center; z-index: 9999; }
+        .spinner { width: 50px; height: 50px; border: 3px solid rgba(255,255,255,0.1); border-top-color: #3b82f6; border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div class="loader">
+        <div class="spinner"></div>
+    </div>
+
+    <nav>
+        <div class="logo">Selov Asx</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="theme-toggle">🌙</button>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>Selov <span class="gradient-text">Asx</span></h1>
+                <div id="typed-text"></div>
+                <p class="hero-description">I build modern web interfaces and create tools. Eager to learn, improve, and secure systems.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">Contact Me</a>
+                    <a href="#projects" class="btn btn-secondary">View Projects</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <h2 class="section-title">About Me</h2>
+            <div class="glass-card" style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <p>I'm a passionate Front End Developer and Tool Creator who loves crafting seamless digital experiences. With a focus on security and performance, I build solutions that help both gamers and businesses thrive. Always eager to learn and push boundaries.</p>
+                <div style="margin-top: 1.5rem;">
+                    <span style="color: #3b82f6;">✨ 3+ Years Experience</span>
+                    <span style="margin: 0 1rem;">⚡ 15+ Projects Completed</span>
+                    <span>🎯 100% Client Satisfaction</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="skills-section">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <h3>HTML5/CSS3</h3>
+                    <div class="skill-bar"><div class="skill-progress" style="width: 95%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <h3>JavaScript/TypeScript</h3>
+                    <div class="skill-bar"><div class="skill-progress" style="width: 90%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <h3>Python</h3>
+                    <div class="skill-bar"><div class="skill-progress" style="width: 85%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <h3>Node.js</h3>
+                    <div class="skill-bar"><div class="skill-progress" style="width: 80%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <h3>React/Vue</h3>
+                    <div class="skill-bar"><div class="skill-progress" style="width: 88%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <h3>Git & DevOps</h3>
+                    <div class="skill-bar"><div class="skill-progress" style="width: 82%"></div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img class="project-img" data-src="https://via.placeholder.com/400x200/3b82f6/ffffff?text=Autobot" alt="Autobot">
+                    <div class="project-info">
+                        <h3>Autobot</h3>
+                        <p>Advanced automation tool for repetitive tasks.</p>
+                        <div class="project-links">
+                            <a href="https://autobotnsekako.onrender.com/" target="_blank" class="btn btn-primary">Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img class="project-img" data-src="https://via.placeholder.com/400x200/ef4444/ffffff?text=Spam+Share" alt="Spam Share">
+                    <div class="project-info">
+                        <h3>Spam Share</h3>
+                        <p>Content sharing platform with smart filtering.</p>
+                        <div class="project-links">
+                            <a href="https://shareselov.onrender.com/" target="_blank" class="btn btn-primary">Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="upcoming-badge">Upcoming</div>
+                    <img class="project-img" data-src="https://via.placeholder.com/400x200/f97316/ffffff?text=GameHub" alt="GameHub">
+                    <div class="project-info">
+                        <h3>GameHub Portal</h3>
+                        <p>Gaming community platform with real-time stats.</p>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-secondary">Coming Soon</a>
+                        </div
